@@ -57,4 +57,32 @@ public class ToDoDAO {
         long check = database.insert("TODO", null, values);
         return check != -1;
     }
+    public boolean Update(ToDo toDo) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("TITLE", toDo.getTitle());
+        cv.put("CONTENT", toDo.getContent());
+        cv.put("DATE", toDo.getDate());
+        cv.put("TYPE", toDo.getType());
+        cv.put("STATUS", toDo.getStatus());
+
+        int rowsAffected = db.update("TODO", cv, "ID=?", new String[]{String.valueOf(toDo.getId())});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
+    public boolean Delete(int Id){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long check = db.delete("TODO","ID=?",new String[]{String.valueOf(Id)});
+        return check!=1;
+    }
+
+//     Hàm deleteToDo để xóa một ToDo từ cơ sở dữ liệu
+    public boolean deleteToDo(int toDoId) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        int affectedRows = db.delete("TODO", "ID=?", new String[]{String.valueOf(toDoId)});
+        return affectedRows > 0;
+    }
 }
