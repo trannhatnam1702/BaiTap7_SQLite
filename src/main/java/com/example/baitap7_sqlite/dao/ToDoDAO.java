@@ -47,7 +47,7 @@ public class ToDoDAO {
 
     public boolean addToDo(ToDo toDo){
         SQLiteDatabase database = dbHelper.getWritableDatabase();
-        database.beginTransaction();
+        //database.beginTransaction();
         ContentValues values = new ContentValues();
         values.put("TITLE", toDo.getTitle());
         values.put("CONTENT", toDo.getContent());

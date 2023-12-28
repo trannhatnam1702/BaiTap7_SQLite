@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                ToDo newToDo = new ToDo(0,title, content, date, type,0);
+                ToDo newToDo = new ToDo(id,title, content, date, type,0);
 
                 boolean isSuccess = toDoDAO.addToDo(newToDo);
 
@@ -131,16 +131,15 @@ public class MainActivity extends AppCompatActivity {
                             .setPositiveButton("Có", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // Xác nhận cập nhật, gọi phương thức Update trong ToDoDAO
-                                    ToDo updatedToDo = new ToDo(id, title, content, date, type, status);
+                                    ToDo updatedToDo = new ToDo(id, title, content, date, type, 0);
                                     ToDoDAO todoDAO = new ToDoDAO(MainActivity.this);
                                     todoDAO.Update(updatedToDo);
                                     refreshListView();
 
-                                    edtTitle.setText("");
-                                    edtContent.setText("");
-                                    edtDate.setText("");
-                                    edtType.setText("");
+//                                    edtTitle.setText("");
+//                                    edtContent.setText("");
+//                                    edtDate.setText("");
+//                                    edtType.setText("");
                                 }
                             })
                             .setNegativeButton("Không", new DialogInterface.OnClickListener() {
